@@ -104,8 +104,6 @@ export default class TiledWithPlayerScene extends Phaser.Scene {
     // Phaser supports multiple cameras, but you can access the default camera like this:
     const camera = this.cameras.main;
     camera.startFollow(this.player);
-    camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 

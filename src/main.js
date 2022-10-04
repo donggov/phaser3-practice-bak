@@ -3,11 +3,14 @@ import Phaser from "phaser";
 import HelloWorldScene from "./scenes/HelloWorldScene";
 import TiledScene from "./scenes/TiledScene";
 import TiledWithPlayerScene from "./scenes/TiledWithPlayerScene";
+import NavmeshBasic, { NavmeshStart } from "./scenes/NavmeshBasic";
+import { PhaserNavMeshPlugin } from "phaser-navmesh";
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 750,
+  height: 750,
+  // backgroundColor: "#fff",
   physics: {
     default: "arcade",
     // arcade: {
@@ -17,6 +20,16 @@ const game = new Phaser.Game({
       gravity: { y: 0 },
     },
   },
+  plugins: {
+    scene: [
+      {
+        key: "NavMeshPlugin", // Key to store the plugin class under in cache
+        plugin: PhaserNavMeshPlugin, // Class that constructs plugins
+        mapping: "navMeshPlugin", // Property mapping to use for the scene, e.g. this.navMeshPlugin
+        start: true,
+      },
+    ],
+  },
   //   scene: [HelloWorldScene],
   //   scene: [TiledScene],
 });
@@ -25,5 +38,7 @@ const game = new Phaser.Game({
 game.scene.add("hello-world", HelloWorldScene);
 game.scene.add("tiled", TiledScene);
 game.scene.add("tiled-with-player", TiledWithPlayerScene);
+game.scene.add("navmesh-basic", NavmeshBasic);
+game.scene.add("navmesh-start", NavmeshStart);
 
-game.scene.start("tiled-with-player");
+game.scene.start("navmesh-basic");
